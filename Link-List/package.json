@@ -1,0 +1,11 @@
+{
+  "name": "test_list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "abhijeetckar",
+  "license": "ISC"
+}
