@@ -1,15 +1,17 @@
 "use strict";
 
 var List = require('../Link-List/list');
-class Queue{
+
+
+module.exports = class Queue{
     constructor(args){
         this.queue = new List(args);
-        this.top = this.stack.length;
+        this.top = this.queue.length;
     }
 
     //insert(int) inserts a node in the end
     insert(int){
-        this.stack.pushTail(int);
+        this.queue.pushTail(int);
         this.top++;
     }
 
@@ -20,7 +22,7 @@ class Queue{
 
     //popHead() removes the first node from queue
     popHead(){
-            this.stack.popHead();
+            this.queue.popHead();
             this.top--;
     }
 
