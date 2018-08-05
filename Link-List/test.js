@@ -329,3 +329,74 @@ describe('List',()=>{
         });
     });
 });
+
+//---------------------------------------  removeDuplicate() --------------------------------------//
+
+describe('List',()=>{
+    describe('removeDuplicate()',()=>{
+
+        //test 1
+        it('1 . checks if the list is empty',()=>{
+            var realList = new List();
+            var expectedList = new List();
+            realList.removeDuplicate();
+            assert.equal(realList.compare(expectedList),true); 
+        });
+
+        //test 2
+        it('2 . checks if the list has one Node',()=>{
+            var realList = new List([10]);
+            var expectedList = new List([10]);
+            realList.removeDuplicate();
+            assert.equal(realList.compare(expectedList),true); 
+        });
+
+        //test 3
+        it('3 . checks if the list has duplicates two Nodes and removes duplicates',()=>{
+            var realList = new List([10,20]);
+            var expectedList = new List([10,20]);
+            realList.removeDuplicate();
+            assert.equal(realList.compare(expectedList),true); 
+        });
+
+        //test 4
+        it('4 . checks if the list has duplicates two Nodes and removes duplicates',()=>{
+            var realList = new List([10,10]);
+            var expectedList = new List([]);
+            realList.removeDuplicate();
+            assert.equal(realList.compare(expectedList),true); 
+        });
+
+        //test 5
+        it('5 . checks if the list has duplicates Node and removes duplicates when the list has three or more nodes',()=>{
+            var realList = new List([10,20,20]);
+            var expectedList = new List([10]);
+            realList.removeDuplicate();
+            assert.equal(realList.compare(expectedList),true); 
+        });
+
+        //test 6
+        it('6 . checks if the list has duplicates Node and removes duplicates when the list has three or more nodes',()=>{
+            var realList = new List([10,10,20]);
+            var expectedList = new List([20]);
+            realList.removeDuplicate();
+            assert.equal(realList.compare(expectedList),true); 
+        });
+
+        //test 7
+        it('7 . checks if the list has duplicates Node and removes duplicates when the list has three or more nodes',()=>{
+            var realList = new List([10,20,10]);
+            var expectedList = new List([20]);
+            realList.removeDuplicate();
+            assert.equal(realList.compare(expectedList),true); 
+        });
+
+        // //test 8
+        // it('8 . checks if the list has duplicates Node and removes duplicates when the list has three or more nodes',()=>{
+        //     var realList = new List([10,10,10]);
+        //     var expectedList = new List([10]);
+        //     realList.removeDuplicate();
+        //     assert.equal(realList.compare(expectedList),true); 
+        // });
+    });
+});

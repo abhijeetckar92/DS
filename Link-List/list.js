@@ -165,13 +165,13 @@ module.exports = class List {
         }
         var head = this.head;
         var iterator = this.head.next
-        for(let i = 0 ; i < this.length -1 ; i++){
-            for (let j = 0 ; j < this.length - 1; j++) {
+        for (let i = 0; i < this.length - 1; i++) {
+            for (let j = 0; j < this.length - 1; j++) {
                 if (head.data == iterator.data) {
                     return true;
                 }
                 else {
-                    if(iterator.next!=null){
+                    if (iterator.next != null) {
                         iterator = iterator.next;
                     }
                 }
@@ -183,7 +183,27 @@ module.exports = class List {
     }
 
     removeDuplicate() {
-
+        let bool = this.hasDuplicate();
+        if (this.head == null || this.head == this.tail) {
+            return;
+        }
+        if (bool != true) {
+            return this;
+        }
+        let head = this.head;
+        let iterator = head.next;
+        for (let i = 0; i < this.length; i++) {
+            if (head.data == iterator.data) {
+                this.removeValue(head.data)
+            }
+            else {
+                head = head.next;
+                if (head.next != null) {
+                    iterator = head.next;
+                }
+            }
+        }
+        return this;
     }
 }
 
