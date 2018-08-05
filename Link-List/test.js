@@ -118,20 +118,24 @@ describe('List', () => {
 
             // test 3
             it('3 . removes the last element from the list containing more than one elements', () => {
-                var expectedList = new List([10]);
-                var realList = new List([10, 20]);
+                let expectedList = new List([10]);
+                let realList = new List([10, 20]);
                 realList.popTail();
                 assert.equal(realList.compare(expectedList), true);
             });
-            it('3 . removes the last element from the list containing more than one elements', () => {
-                var expectedList = new List([10, 20]);
-                var realList = new List([10, 20, 30]);
+
+            //test 4
+            it('4 . removes the last element from the list containing more than one elements', () => {
+                let expectedList = new List([10, 20]);
+                let realList = new List([10, 20, 30]);
                 realList.popTail();
                 assert.equal(realList.compare(expectedList), true);
             });
-            it('3 . removes the last element from the list containing more than one elements', () => {
-                var expectedList = new List([10, 20, 30]);
-                var realList = new List([10, 20, 30, 40]);
+
+            //test 5
+            it('5 . removes the last element from the list containing more than one elements', () => {
+                let expectedList = new List([10, 20, 30]);
+                let realList = new List([10, 20, 30, 40]);
                 realList.popTail();
                 assert.equal(realList.compare(expectedList), true);
             });
@@ -144,20 +148,184 @@ describe('List', () => {
 
 describe('List', () => {
     describe('.clone', () => {
+
+        //test 1
         it('creates a duplicate list if the original list has no nodes', () => {
-            var originalList = new List();
-            var duplicateList = originalList.clone();
+            let originalList = new List();
+            let duplicateList = originalList.clone();
             assert.equal(originalList.compare(duplicateList),true);
         });
+
+        //test 2
         it('creates a duplicate list if the original list has one node', () => {
-            var originalList = new List([10]);
-            var duplicateList = originalList.clone();
+            let originalList = new List([10]);
+            let duplicateList = originalList.clone();
             assert.equal(originalList.compare(duplicateList),true);
         });
+
+        //test 3
         it('creates a duplicate list if the original list has more than one node', () => {
-            var originalList = new List([10,20]);
-            var duplicateList = originalList.clone();
+            let originalList = new List([10,20]);
+            let duplicateList = originalList.clone();
             assert.equal(originalList.compare(duplicateList),true);
+        });
+    });
+});
+
+//---------------------------------------  removeValue() --------------------------------------//
+
+
+describe('List', () => {
+    describe('.removeValue(int)', () => {
+
+        //test 1
+        it('1 . checks if the list is created for values to be removed', () => {
+            let originalList = new List();
+            let expectedList = new List();
+            originalList.removeValue(10);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+        
+        //test 2
+        it('2 . removes the value from the first node of the list', () => {
+            let originalList = new List([10]);
+            let expectedList = new List();
+            originalList.removeValue(10);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 3
+        it('3 . removes the value from the first node of the list if the list has two nodes', () => {
+            let originalList = new List([10,20]);
+            let expectedList = new List([20]);
+            originalList.removeValue(10);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 4
+        it('4 . removes the value from the last node of the list if the list has two nodes', () => {
+            let originalList = new List([20,10]);
+            let expectedList = new List([20]);
+            originalList.removeValue(10);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 5
+        it('5 . removes the all the values equal to the argument passed from the list', () => {
+            let originalList = new List([10,20,10]);
+            let expectedList = new List([20]);
+            originalList.removeValue(10);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 6
+        it('6 . removes the all the values equal to the argument passed from the list', () => {
+            let originalList = new List([20,10,10]);
+            let expectedList = new List([20]);
+            originalList.removeValue(10);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 7
+        it('7 . removes the all the values equal to the argument passed from the list', () => {
+            let originalList = new List([10,10,20]);
+            let expectedList = new List([20]);
+            originalList.removeValue(10);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+
+        //test 8
+        it('8 . removes the node from the middle of the list', () => {
+            let originalList = new List([20,10,20]);
+            let expectedList = new List([20,20]);
+            originalList.removeValue(10);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        // //test 9
+        // it('9 . removes all the nodes the list', () => {
+        //     let originalList = new List([20,20,20]);
+        //     let expectedList = new List();
+        //     originalList.removeValue(20);
+        //     assert.equal(originalList.compare(expectedList),true);
+        // });
+
+        it('10 . removes all the nodes the list', () => {
+            let originalList = new List([10,20,20]);
+            let expectedList = new List([10]);
+            originalList.removeValue(20);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+        
+        it('11 . removes all the nodes the list', () => {
+            let originalList = new List([20,20,10]);
+            let expectedList = new List([10]);
+            originalList.removeValue(20);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+    });
+});
+
+//---------------------------------------  hasDuplicate() --------------------------------------//
+
+describe('List',()=>{
+    describe('hasDuplicate',()=>{
+
+        //test 1
+        it('1 . checks if the list is empty',()=>{
+            var realList = new List();
+            var bool = realList.hasDuplicate();
+            assert.equal(bool==false,true);
+        });
+
+        //test 2
+        it('2 . checks if the list has only one node',()=>{
+            var realList = new List([10]);
+            var bool = realList.hasDuplicate();
+            assert.equal(bool==false,true);
+        });
+
+        // test 3
+        it('3 . checks if the list has duplicate nodes',()=>{
+            var realList = new List([10,20]);
+            var bool = realList.hasDuplicate();
+            assert.equal(bool==false,true);
+        });
+
+        // test 4
+        it('4 . checks if the list has duplicate nodes',()=>{
+            var realList = new List([10,20,30]);
+            var bool = realList.hasDuplicate();
+            assert.equal(bool==false,true);
+        });
+
+        // test 5
+        it('5 . checks if the list has duplicate nodes',()=>{
+            var realList = new List([10,10]);
+            var bool = realList.hasDuplicate();
+            assert.equal(bool==true,true);
+        });
+
+        // test 6
+        it('6 . checks if the list has duplicate nodes',()=>{
+            var realList = new List([10,20,10]);
+            var bool = realList.hasDuplicate();
+            assert.equal(bool==true,true);
+        });
+
+        // test 7
+        it('7 . checks if the list has duplicate nodes',()=>{
+            var realList = new List([20,10,10]);
+            var bool = realList.hasDuplicate();
+            assert.equal(bool==true,true);
+        });
+
+        // test 8
+        it('8 . checks if the list has duplicate nodes',()=>{
+            var realList = new List([10,20,10,30]);
+            var bool = realList.hasDuplicate();
+            assert.equal(bool==true,true);
         });
     });
 });

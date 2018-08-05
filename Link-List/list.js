@@ -71,7 +71,7 @@ module.exports = class List {
         }
         let temp = this.head;
         this.head = this.head.next;
-        temp = null;
+        temp.next = null;
         this.length--;
         return;
     }
@@ -108,14 +108,84 @@ module.exports = class List {
 
     clone() {
         var dupList = new List();
-        var thisHead = this.head;
+        var iterator = this.head;
         if (this.head == null) {
             return dupList;
         }
         for (let i = 0; i < this.length; i++) {
-            dupList.pushTail(thisHead.data);
-            thisHead = thisHead.next;
+            dupList.pushTail(iterator.data);
+            iterator = iterator.next;
         }
-    return dupList;
+        return dupList;
+    }
+
+    removeValue(int) {
+        let iterator = this.head;
+        if (this.head == null) {
+            return;
+        }
+        for (let i = 0; i <= this.length; i++) {
+            if (iterator.data == int) {
+                if (this.head == this.tail) {
+                    this.head = null;
+                    this.tail = null;
+                    this.length--;
+                }
+                else {
+                    if (this.head.data == int) {
+                        this.head = this.head.next;
+                        iterator.next = null;
+                        iterator = this.head;
+                        this.length--;
+                    }
+                    else if (this.tail.data == int) {
+                        this.popTail();
+                    }
+                    else {
+                        var iterator2 = this.head;
+                        while (iterator2.next != iterator) {
+                            iterator2 = iterator2.next;
+                        }
+                        iterator2.next = iterator.next;
+                        iterator.next = null;
+                        iterator = iterator2.next;
+                        this.length--;
+                    }
+                }
+            }
+            else {
+                iterator = iterator.next;
+            }
+        }
+    }
+
+    hasDuplicate() {
+        if (this.head == null || this.head == this.tail) {
+            return false;
+        }
+        var head = this.head;
+        var iterator = this.head.next
+        for(let i = 0 ; i < this.length -1 ; i++){
+            for (let j = 0 ; j < this.length - 1; j++) {
+                if (head.data == iterator.data) {
+                    return true;
+                }
+                else {
+                    if(iterator.next!=null){
+                        iterator = iterator.next;
+                    }
+                }
+            }
+            head = head.next;
+            iterator = head.next;
+        }
+        return false;
+    }
+
+    removeDuplicate() {
+
     }
 }
+
+
+
