@@ -16,7 +16,7 @@ describe('Queue', () => {
             //console.log(expectedStack);
             assert.equal(realQueue.queue.compare(expectedQueue), false);
         });
-
+        
         //test 2
         it('2 . checks if node is added if the queue has one node', () => {
             let realQueue = new Queue([10]);
