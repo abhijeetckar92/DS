@@ -52,13 +52,4 @@ module.exports = class Queue{
         }
     }
 
-} 
-
-// var q = new Queue([]);
-
-// var n = q.head();
-// q.popHead();
-// var m = q.head();
-
-// console.log(m);
-// q.print();
+}
