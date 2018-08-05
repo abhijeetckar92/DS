@@ -37,12 +37,12 @@ module.exports = class Stack {
         else {
             let iterator = this.stack.head;
             for (let i = 0; i < this.top; i++) {
-                for (let j = 0+i; j < this.top - i; j++) {
+                for (let j = 0 + i; j < this.top - i; j++) {
                     if (iterator.next != null) {
                         iterator = iterator.next;
                     }
                 }
-                process.stdout.write('['+iterator.data.toString()+']\n');
+                process.stdout.write('[' + iterator.data.toString() + ']\n');
                 iterator = this.stack.head;
             }
         }
