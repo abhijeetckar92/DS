@@ -106,6 +106,7 @@ module.exports = class List {
         }
     }
 
+    //creates a new List entirely
     clone() {
         var dupList = new List();
         var iterator = this.head;
@@ -119,6 +120,7 @@ module.exports = class List {
         return dupList;
     }
 
+    //removeValue() removes the node with the argument passed to the function
     removeValue(int) {
         let iterator = this.head;
         if (this.head == null) {
@@ -159,6 +161,7 @@ module.exports = class List {
         }
     }
 
+    // checks if the list has duplicate nodes
     hasDuplicate() {
         if (this.head == null || this.head == this.tail) {
             return false;
@@ -182,6 +185,7 @@ module.exports = class List {
         return false;
     }
 
+    //removes all the duplicate nodes from this list
     removeDuplicate() {
         let bool = this.hasDuplicate();
         if (this.head == null || this.head == this.tail) {
