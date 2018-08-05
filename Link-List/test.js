@@ -138,3 +138,26 @@ describe('List', () => {
         });
     });
 });
+
+//---------------------------------------  clone() --------------------------------------//
+
+
+describe('List', () => {
+    describe('.clone', () => {
+        it('creates a duplicate list if the original list has no nodes', () => {
+            var originalList = new List();
+            var duplicateList = originalList.clone();
+            assert.equal(originalList.compare(duplicateList),true);
+        });
+        it('creates a duplicate list if the original list has one node', () => {
+            var originalList = new List([10]);
+            var duplicateList = originalList.clone();
+            assert.equal(originalList.compare(duplicateList),true);
+        });
+        it('creates a duplicate list if the original list has more than one node', () => {
+            var originalList = new List([10,20]);
+            var duplicateList = originalList.clone();
+            assert.equal(originalList.compare(duplicateList),true);
+        });
+    });
+});

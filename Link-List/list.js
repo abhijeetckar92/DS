@@ -88,14 +88,14 @@ module.exports = class List {
                 this.tail = null;
                 this.length--;
             }
-            else{
+            else {
                 let temp = this.head;
-                if(temp.next == this.tail){
+                if (temp.next == this.tail) {
                     this.head.next = null;
                     this.tail = temp;
                     this.length--;
-                }else{
-                    while(temp.next != this.tail){
+                } else {
+                    while (temp.next != this.tail) {
                         temp = temp.next;
                     }
                     this.tail = temp;
@@ -104,5 +104,18 @@ module.exports = class List {
                 }
             }
         }
+    }
+
+    clone() {
+        var dupList = new List();
+        var thisHead = this.head;
+        if (this.head == null) {
+            return dupList;
+        }
+        for (let i = 0; i < this.length; i++) {
+            dupList.pushTail(thisHead.data);
+            thisHead = thisHead.next;
+        }
+    return dupList;
     }
 }
