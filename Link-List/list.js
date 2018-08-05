@@ -66,7 +66,7 @@ module.exports = class List {
     //removes the first node from the list
     popHead() {
         if (this.head == null) {
-            process.stdout.write('List is Empty');
+            process.stdout.write('[]\n');
             return;
         }
         let temp = this.head;
@@ -79,7 +79,7 @@ module.exports = class List {
     //removes the last element from the list
     popTail() {
         if (this.head == null) {
-            process.stdout.write('List is empty');
+            process.stdout.write('[]\n');
             return;
         }
         else {
