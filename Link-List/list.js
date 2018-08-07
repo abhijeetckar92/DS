@@ -9,8 +9,6 @@ module.exports = class List {
         this.head = null;
         this.tail = null;
         this.length = 0;
-        //this.length = args.length;
-
         //takes various arguments while creating list object and calls pushTail()  
         for (let i = 0; i < args.length; i++) {
             this.pushTail(args[i]);
@@ -76,34 +74,27 @@ module.exports = class List {
         return;
     }
 
-    //removes the last element from the list
     popTail() {
+        // checks if the list has no nodes
         if (this.head == null) {
             process.stdout.write('[]\n');
             return;
         }
-        else {
-            if (this.head == this.tail) {
-                this.head = null;
-                this.tail = null;
-                this.length--;
-            }
-            else {
-                let temp = this.head;
-                if (temp.next == this.tail) {
-                    this.head.next = null;
-                    this.tail = temp;
-                    this.length--;
-                } else {
-                    while (temp.next != this.tail) {
-                        temp = temp.next;
-                    }
-                    this.tail = temp;
-                    this.tail.next = null;
-                    this.length--;
-                }
-            }
+        //removes a node if the list has one node
+        if (this.length == 1) {
+            this.head = null;
+            this.tail = null;
+            this.length--;
+            return;
         }
+        //removes the tail node if the list has two or more nodes
+        let temp = this.head;
+        while (temp.next != this.tail) {
+            temp = temp.next;
+        }
+        this.tail = temp;
+        this.tail.next = null;
+        this.length--;
     }
 
     //creates a new List entirely
@@ -120,45 +111,113 @@ module.exports = class List {
         return dupList;
     }
 
-    //removeValue() removes the node with the argument passed to the function
-    removeValue(int) {
-        let iterator = this.head;
+    remove(node) {
+        //if no nodes are present
         if (this.head == null) {
             return;
         }
-        for (let i = 0; i <= this.length; i++) {
-            if (iterator.data == int) {
-                if (this.head == this.tail) {
-                    this.head = null;
-                    this.tail = null;
-                    this.length--;
-                }
-                else {
-                    if (this.head.data == int) {
-                        this.head = this.head.next;
-                        iterator.next = null;
-                        iterator = this.head;
-                        this.length--;
-                    }
-                    else if (this.tail.data == int) {
-                        this.popTail();
-                    }
-                    else {
-                        var iterator2 = this.head;
-                        while (iterator2.next != iterator) {
-                            iterator2 = iterator2.next;
-                        }
-                        iterator2.next = iterator.next;
-                        iterator.next = null;
-                        iterator = iterator2.next;
-                        this.length--;
-                    }
-                }
-            }
-            else {
+        let iterator2 = this.head;
+        let temp = null;
+        while (iterator2.data != node.data) {
+            temp = iterator2;
+            iterator2 = iterator2.next;
+        }
+        if (iterator2 == this.head) {
+            this.head = this.head.next;
+            iterator2.next = null;
+            iterator2 = this.head;
+            this.length--;
+            return;
+        }
+        temp.next = iterator2.next;
+        iterator2.next = null;
+        this.length--;
+        return;
+    }
+
+    //removeValue() removes the node with the argument passed to the function
+    // removeValue(int) {
+    //     let iterator = this.head;
+    //     if (this.head == null) {
+    //         return;
+    //     }
+    //     for (let i = 0; i <= this.length; i++) {
+    //         if (iterator.data == int) {
+    //             if (this.head == this.tail) {
+    //                 this.head = null;
+    //                 this.tail = null;
+    //                 this.length--;
+    //             }
+    //             else {
+    //                 if (this.head.data == int) {
+    //                     this.head = this.head.next;
+    //                     iterator.next = null;
+    //                     iterator = this.head;
+    //                     this.length--;
+    //                 }
+    //                 else if (this.tail.data == int) {
+    //                     this.popTail();
+    //                 }
+    //                 else {
+    //                     var iterator2 = this.head;
+    //                     while (iterator2.next != iterator) {
+    //                         iterator2 = iterator2.next;
+    //                     }
+    //                     iterator2.next = iterator.next;
+    //                     iterator.next = null;
+    //                     iterator = iterator2.next;
+    //                     this.length--;
+    //                 }
+    //             }
+    //         }
+    //         else {
+    //             iterator = iterator.next;
+    //         }
+    //     }
+    // }
+
+    removeValue(data) {
+        if (this.head == null) {
+            return;
+        }
+        else if (this.head.next == null && this.head.data == data) {
+            this.head.next = null;
+            this.tail.next = null;
+            this.length--;
+            return;
+        }
+        var iterator = this.head;
+        var node = this.createNode(data);
+
+        while (iterator.next != null) {
+            while (iterator.data != data) {
                 iterator = iterator.next;
             }
+            if (iterator.data == data) {
+                let temp = iterator;
+                iterator = iterator.next;
+                this.remove(node);
+                temp = null;
+            }
         }
+        // while (iterator.next != null && iterator.data == data) {
+        //     if (iterator.data == data) {
+        //         var temp = iterator;
+        //         iterator = iterator.next;
+        //         console.log('before remove');
+        //         this.remove(temp.data);
+        //         console.log('after remove');
+        //         temp = null;
+        //     }
+        //     else {
+        //         iterator = iterator.next;
+        //     }
+        // }
+    }
+
+    createNode(data) {
+        var newNode = new Node(data);
+        return newNode;
     }
 
     // checks if the list has duplicate nodes

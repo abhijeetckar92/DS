@@ -48,7 +48,7 @@ describe('Stack', () => {
         });
         it('2 . removes a node from the stack if the stack has one node', () => {
             let realStack = new Stack([10]);
-            realStack.pop(10);
+            realStack.pop();
             //console.log(realStack);
             let expectedStack = new Stack();
             //console.log(expectedStack);

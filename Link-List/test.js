@@ -1,3 +1,5 @@
+"use strict";
+
 var assert = require('assert');
 
 var List = require('./list');
@@ -171,12 +173,116 @@ describe('List', () => {
         });
     });
 });
+//---------------------------------------  remove() --------------------------------------//
+
+
+describe('List', () => {
+    describe('.remove(data)', () => {
+
+        //test 1
+        it('1 . checks if the list is created for values to be removed', () => {
+            let originalList = new List();
+            let testNode = originalList.createNode(10);
+            let expectedList = new List();
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+        
+        //test 2
+        it('2 . removes the value from the first node of the list', () => {
+            let originalList = new List([10]);
+            let testNode = originalList.createNode(10);
+            let expectedList = new List();
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 3
+        it('3 . removes the value from the first node of the list if the list has two nodes', () => {
+            let originalList = new List([10,20]);
+            let testNode = originalList.createNode(10);
+            let expectedList = new List([20]);
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 4
+        it('4 . removes the value from the last node of the list if the list has two nodes', () => {
+            let originalList = new List([20,10]);
+            let testNode = originalList.createNode(10);
+            let expectedList = new List([20]);
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 5
+        it('5 . removes the values equal to the argument passed from the list', () => {
+            let originalList = new List([10,20,10]);
+            let expectedList = new List([20,10]);
+            let testNode = originalList.createNode(10);
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 6
+        it('6 . removes the values equal to the argument passed from the list', () => {
+            let originalList = new List([20,10,10]);
+            let testNode = originalList.createNode(10);
+            let expectedList = new List([20,10]);
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        //test 7
+        it('7 . removes the all the values equal to the argument passed from the list', () => {
+            let originalList = new List([10,10,20]);
+            let testNode = originalList.createNode(10);
+            let expectedList = new List([10,20]);
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+
+        //test 8
+        it('8 . removes the node from the middle of the list', () => {
+            let originalList = new List([20,10,20]);
+            let expectedList = new List([20,20]);
+            let testNode = originalList.createNode(10);
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+
+        // //test 9
+        // it('9 . removes all the nodes the list', () => {
+        //     let originalList = new List([20,20,20]);
+        //     let expectedList = new List();
+        //     originalList.removeValue(20);
+        //     assert.equal(originalList.compare(expectedList),true);
+        // });
+
+        it('10 . removes all the nodes the list', () => {
+            let originalList = new List([10,20,20]);
+            let expectedList = new List([10,20]);
+            let testNode = originalList.createNode(20);
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+        
+        it('11 . removes all the nodes the list', () => {
+            let originalList = new List([20,20,10]);
+            let expectedList = new List([20,10]);
+            let testNode = originalList.createNode(20);
+            originalList.remove(testNode);
+            assert.equal(originalList.compare(expectedList),true);
+        });
+    });
+});
 
 //---------------------------------------  removeValue() --------------------------------------//
 
 
 describe('List', () => {
-    describe('.removeValue(int)', () => {
+    describe('.removeValue(data)', () => {
 
         //test 1
         it('1 . checks if the list is created for values to be removed', () => {
