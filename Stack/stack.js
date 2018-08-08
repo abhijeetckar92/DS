@@ -18,6 +18,13 @@ module.exports = class Stack {
         this.top++;
     }
 
+    peakTop() {
+        if (this.stack.tail == null) {
+            return null;
+        }
+        return this.stack.tail.data;
+    }
+
     // pop() returns integer ie the number removed from the stack
     pop() {
         this.stack.popTail();
@@ -26,7 +33,8 @@ module.exports = class Stack {
 
     //counts number of element in the stack
     count() {
-        process.stdout.write(this.top.toString());
+        return this.top;
+        //process.stdout.write(this.top.toString());
     }
 
     //print() prints all the elements in a stack
